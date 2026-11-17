@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Daftar - Aldi Pasir Store</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styling Tambahan Khusus Halaman Login */
+    .form-box {
+      display: none;
+    }
+    .form-box.aktif-form {
+      display: block;
+    }
+    .tab-login {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      width: 50%;
+    }
+    .tab-btn.aktif-tab {
+      color: #007bff;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 7px;
+    }
+    .input-grup {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .input-grup label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .input-grup input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MENU NAVIGASI ATAS -->
+  <div class="navbar">
+    <a href="index.html" class="logo">ALDI PASIR STORE</a>
+    <div class="menu">
+      <a href="index.html">Profil</a>
+      <a href="katalog.html">Catalog</a>
+      <a href="menu.html">Menu</a>
+      <a href="login.html" style="color: #007bff; font-weight: bold;">Login</a>
+      
+      <!-- TOMBOL TERANG & GELAP -->
+      <div class="pilihan-tema">
+        <button id="btn-terang" class="btn-tema aktif" onclick="pilihTema('light')">☀️ Terang</button>
+        <button id="btn-gelap" class="btn-tema" onclick="pilihTema('dark')">🌙 Gelap</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- KOTAK UTAMA LOGIN / DAFTAR -->
+  <div class="container">
+    <div class="kotak-profil">
+      
+      <!-- TAB PEMILIH -->
+      <div class="tab-login">
+        <button id="tab-masuk" class="tab-btn aktif-tab" onclick="gantiTab('masuk')">Masuk</button>
+        <button id="tab-daftar" class="tab-btn" onclick="gantiTab('daftar')">Daftar</button>
+      </div>
+
+      <!-- FORM MASUK (LOGIN) -->
+      <div id="form-masuk" class="form-box aktif-form">
+        <h3>MASUK AKUN</h3>
+        <form onsubmit="alert('Berhasil Masuk!'); return false;">
+          <div class="input-grup">
+            <label>Email / Username</label>
+            <input type="text" placeholder="Masukkan email..." required>
+          </div>
+          <div class="input-grup">
+            <label>Password</label>
+            <input type="password" placeholder="Masukkan password..." required>
+          </div>
+          <button type="submit">Masuk</button>
+        </form>
+      </div>
+
+      <!-- FORM DAFTAR (REGISTER) -->
+      <div id="form-daftar" class="form-box">
+        <h3>DAFTAR AKUN BARU</h3>
+        <form onsubmit="alert('Pendaftaran Berhasil! Silakan Masuk.'); return false;">
+          <div class="input-grup">
+            <label>Nama Lengkap</label>
+            <input type="text" placeholder="Nama lengkap..." required>
+          </div>
+          <div class="input-grup">
+            <label>Email</label>
+            <input type="email" placeholder="Email aktif..." required>
+          </div>
+          <div class="input-grup">
+            <label>Password Baru</label>
+            <input type="password" placeholder="Buat password..." required>
+          </div>
+          <button type="submit">Daftar Sekarang</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT INTERAKSI FORM & TEMA -->
+  <script>
+    function gantiTab(jenis) {
+      const masuk = document.getElementById("form-masuk");
+      const daftar = document.getElementById("form-daftar");
+      const btnMasuk = document.getElementById("tab-masuk");
+      const btnDaftar = document.getElementById("tab-daftar");
+
+      if (jenis === "masuk") {
+        masuk.classList.add("aktif-form");
+        daftar.classList.remove("aktif-form");
+        btnMasuk.classList.add("aktif-tab");
+        btnDaftar.classList.remove("aktif-tab");
+      } else {
+        daftar.classList.add("aktif-form");
+        masuk.classList.remove("aktif-form");
+        btnDaftar.classList.add("aktif-tab");
+        btnMasuk.classList.remove("aktif-tab");
+      }
+    }
+
+    // Skrip Tema Terang/Gelap
+    const btnTerang = document.getElementById("btn-terang");
+    const btnGelap = document.getElementById("btn-gelap");
+
+    function pilihTema(mode) {
+      if (mode === "dark") {
+        document.body.classList.add("dark-mode");
+        btnGelap.classList.add("aktif");
+        btnTerang.classList.remove("aktif");
+        localStorage.setItem("tema", "dark");
+      } else {
+        document.body.classList.remove("dark-mode");
+        btnTerang.classList.add("aktif");
+        btnGelap.classList.remove("aktif");
+        localStorage.setItem("tema", "light");
+      }
+    }
+
+    if (localStorage.getItem("tema") === "dark") {
+      pilihTema("dark");
+    }
+  </script>
+
+</body>
+</html>

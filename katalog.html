@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu - Aldi Pasir Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MENU NAVIGASI ATAS -->
+  <div class="navbar">
+    <a href="index.html" class="logo">ALDI PASIR STORE</a>
+    <div class="menu">
+      <a href="index.html">Profil</a>
+      <a href="katalog.html">Catalog</a>
+      <a href="menu.html" style="color: #007bff; font-weight: bold;">Menu</a>
+      
+      <!-- TOMBOL TERANG & GELAP -->
+      <div class="pilihan-tema">
+        <button id="btn-terang" class="btn-tema aktif" onclick="pilihTema('light')">☀️ Terang</button>
+        <button id="btn-gelap" class="btn-tema" onclick="pilihTema('dark')">🌙 Gelap</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISI HALAMAN MENU -->
+  <div class="container">
+    <h2 class="judul-katalog">DAFTAR MENU</h2>
+    
+    <!-- MENU 1 -->
+    <div class="item-katalog">
+      <img src="sabun.jpg" alt="Paket Mandi Komplit">
+      <h3>Paket Mandi Komplit</h3>
+      <p>Sabun, shampo, dan sikat gigi lengkap</p>
+      <p class="harga">Rp 35.000</p>
+      <a href="https://wa.me/628123456789?text=Halo,%20saya%20mau%20pesan%20Paket%20Mandi%20Komplit">
+        <button>Pesan Menu</button>
+      </a>
+    </div>
+
+    <!-- MENU 2 -->
+    <div class="item-katalog">
+      <img src="parfum.jpg" alt="Paket Wangi Seharian">
+      <h3>Paket Wangi Seharian</h3>
+      <p>Parfum dan deodoran anti bau</p>
+      <p class="harga">Rp 60.000</p>
+      <a href="https://wa.me/628123456789?text=Halo,%20saya%20mau%20pesan%20Paket%20Wangi%20Seharian">
+        <button>Pesan Menu</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- SCRIPT TEMA -->
+  <script>

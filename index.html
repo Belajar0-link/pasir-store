@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Aldi Pasir Store</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-box { display: none; }
+    .form-box.aktif-form { display: block; }
+    .tab-login {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      width: 50%;
+    }
+    .tab-btn.aktif-tab {
+      color: #007bff;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 7px;
+    }
+    .input-grup {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .input-grup label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .input-grup input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" style="margin-top: 80px;">
+    <div class="kotak-profil">
+      <h2 style="margin-bottom: 5px;">ALDI PASIR STORE</h2>
+      <p style="color: #666; margin-bottom: 20px;">Silakan daftar atau login</p>
+      
+      <!-- TAB PEMILIH -->
+      <div class="tab-login">
+        <button id="tab-masuk" class="tab-btn aktif-tab" onclick="gantiTab('masuk')">Masuk</button>
+        <button id="tab-daftar" class="tab-btn" onclick="gantiTab('daftar')">Daftar</button>
+      </div>
+
+      <!-- FORM MASUK (LOGIN) -->
+      <div id="form-masuk" class="form-box aktif-form">
+        <form onsubmit="prosesLogin(event)">
+          <div class="input-grup">
+            <label>Email</label>
+            <input type="email" id="login-email" placeholder="Masukkan email terdaftar..." required>
+          </div>
+          <div class="input-grup">
+            <label>Password</label>
+            <input type="password" id="login-pass" placeholder="Masukkan password..." required>
+          </div>
+          <button type="submit">Masuk ke Toko</button>
+        </form>
+      </div>
+
+      <!-- FORM DAFTAR (REGISTER) -->
+      <div id="form-daftar" class="form-box">
+        <form onsubmit="prosesDaftar(event)">
+          <div class="input-grup">
+            <label>Nama Lengkap</label>
+            <input type="text" id="regis-nama" placeholder="Nama lengkap..." required>
+          </div>
+          <div class="input-grup">
+            <label>Email</label>
+            <input type="email" id="regis-email" placeholder="Email aktif..." required>
+          </div>
+          <div class="input-grup">
+            <label>Password Baru</label>
+            <input type="password" id="regis-pass" placeholder="Buat password..." required>
+          </div>
+          <button type="submit">Daftar Akun</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function gantiTab(jenis) {
+      const masuk = document.getElementById("form-masuk");
+      const daftar = document.getElementById("form-daftar");
+      const btnMasuk = document.getElementById("tab-masuk");
+      const btnDaftar = document.getElementById("tab-daftar");
+
+      if (jenis === "masuk") {
+        masuk.classList.add("aktif-form");
+        daftar.classList.remove("aktif-form");
+        btnMasuk.classList.add("aktif-tab");
+        btnDaftar.classList.remove("aktif-tab");
+      } else {
+        daftar.classList.add("aktif-form");
+        masuk.classList.remove("aktif-form");
+        btnDaftar.classList.add("aktif-tab");
+        btnMasuk.classList.remove("aktif-tab");
+      }
+    }
+
+    // 1. PROSES PENDAFTARAN AKUN BARU
+    function prosesDaftar(e) {
+      e.preventDefault();
+      const nama = document.getElementById("regis-nama").value;
+      const email = document.getElementById("regis-email").value;
+      const pass = document.getElementById("regis-pass").value;
+
+      // Cek apakah email sudah pernah didaftarkan
+      if (localStorage.getItem(email)) {
+        alert("Email ini sudah terdaftar! Silakan langsung Masuk.");
+        return;
+      }
+
+      // Simpan data akun ke localStorage browser
+      const dataAkun = { nama: nama, password: pass };
+      localStorage.setItem(email, JSON.stringify(dataAkun));
+
+      alert("Pendaftaran Berhasil! Silakan masuk menggunakan email dan password Anda.");
+      
+      // Bersihkan form dan pindah ke tab masuk
+      document.getElementById("regis-nama").value = "";
+      document.getElementById("regis-email").value = "";
+      document.getElementById("regis-pass").value = "";
+      gantiTab('masuk');
+    }
+
+    // 2. PROSES VALIDASI LOGIN
+    function prosesLogin(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById("login-email").value;
+      const passInput = document.getElementById("login-pass").value;
+
+      // Ambil data akun berdasarkan email yang dimasukkan
+      const akunTersimpan = localStorage.getItem(emailInput);
+
+      if (!akunTersimpan) {
+        alert("Email belum terdaftar! Silakan Daftar terlebih dahulu di tab sebelah.");
+        return;
+      }
+
+      const dataUser = JSON.parse(akunTersimpan);
+
+      // Cek apakah password-nya cocok
+      if (dataUser.password === passInput) {
+        // Jika benar, set status login aktif dan masuk ke profil
+        localStorage.setItem("statusLogin", "sudah_login");
+        localStorage.setItem("userAktif", dataUser.nama);
+        alert("Login Berhasil! Selamat datang, " + dataUser.nama);
+        window.location.href = "profil.html"; 
+      } else {
+        alert("Password salah! Silakan coba lagi.");
+      }
+    }
+  </script>
+
+</body>
+</html>

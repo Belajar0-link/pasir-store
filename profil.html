@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil - Aldi Pasir Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MENU NAVIGASI ATAS -->
+  <div class="navbar">
+    <a href="profil.html" class="logo">ALDI PASIR STORE</a>
+    <div class="menu">
+      <a href="profil.html" style="color: #007bff; font-weight: bold;">Profil</a>
+      <a href="katalog.html">Catalog</a>
+      <a href="menu.html">Menu</a>
+      <a href="#" onclick="logout()" style="color: #dc3545;">Logout</a>
+      
+      <!-- TOMBOL TERANG & GELAP -->
+      <div class="pilihan-tema">
+        <button id="btn-terang" class="btn-tema aktif" onclick="pilihTema('light')">☀️ Terang</button>
+        <button id="btn-gelap" class="btn-tema" onclick="pilihTema('dark')">🌙 Gelap</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- KOTAK PROFIL -->
+  <div class="container">
+    <div class="kotak-profil">
+      <h2>ALDI PASIR</h2>
+      <p>SELAMAT DATANG DI TOKO KAMI</p>
+      
+      <img src="store.jpg" alt="Foto Toko">
+      
+      <a href="katalog.html">
+        <button>LIHAT KATALOG</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- SCRIPT PENGAMAN & TEMA -->
+  <script>
+    if (localStorage.getItem("statusLogin") !== "sudah_login") {
+      alert("Anda harus login terlebih dahulu!");
+      window.location.href = "index.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("statusLogin");
+      alert("Berhasil keluar.");
+      window.location.href = "index.html";
+    }
+
+    const btnTerang = document.getElementById("btn-terang");
+    const btnGelap = document.getElementById("btn-gelap");
+
+    function pilihTema(mode) {
+      if (mode === "dark") {
+        document.body.classList.add("dark-mode");
+        btnGelap.classList.add("aktif");
+        btnTerang.classList.remove("aktif");
+        localStorage.setItem("tema", "dark");
+      } else {
+        document.body.classList.remove("dark-mode");
+        btnTerang.classList.add("aktif");
+        btnGelap.classList.remove("aktif");
+        localStorage.setItem("tema", "light");
+      }
+    }
+
+    if (localStorage.getItem("tema") === "dark") {
+      pilihTema("dark");
+    }
+  </script>
+
+</body>
+</html>

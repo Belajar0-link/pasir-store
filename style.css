@@ -1,0 +1,342 @@
+/* RESET HALAMAN & BACKGROUND FOTO */
+body {
+  font-family: Arial, sans-serif;
+  
+  /* Menggunakan gambar store.jpg sebagai background */
+  background-image: linear-gradient(rgba(240, 242, 245, 0.75), rgba(240, 242, 245, 0.75)), url('store.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+  color: #222;
+  margin: 0;
+  padding: 0;
+  display: block;
+  transition: background-image 0.3s, background-color 0.3s, color 0.3s;
+}
+
+/* KETIKA DARK MODE AKTIF, BACKGROUND DIBUAT LEBIH GELAP */
+body.dark-mode {
+  background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('store.jpg');
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* MENU NAVIGASI ATAS */
+.navbar {
+  background-color: #333;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 22px;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+}
+
+.navbar .menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar .menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar .menu a:hover {
+  color: #007bff;
+}
+
+/* TOMBOL TEMA */
+.pilihan-tema {
+  display: flex;
+  gap: 4px;
+  background-color: #222;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid #555;
+}
+
+.btn-tema {
+  background-color: transparent;
+  color: #ccc;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  width: auto;
+  transition: 0.2s;
+}
+
+.btn-tema:hover {
+  color: white;
+}
+
+.btn-tema.aktif {
+  background-color: #007bff;
+  color: white;
+}
+
+/* WADAH UTAMA */
+.container {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* KOTAK PROFIL & KATALOG */
+.kotak-profil, .item-katalog {
+  background-color: white;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
+
+.kotak-profil img, .item-katalog img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.judul-katalog {
+  text-align: center;
+  color: #333;
+  margin: 20px 0;
+}
+
+.item-katalog h3 {
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.harga {
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('aldibau.jpg');
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode .navbar {
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-mode .kotak-profil,
+body.dark-mode .item-katalog {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+body.dark-mode .judul-katalog,
+body.dark-mode .item-katalog h3 {
+  color: #ffffff;
+}
+
+
+/* KETIKA DARK MODE AKTIF, BACKGROUND FOTO DIBUAT LEBIH GELAP */
+body.dark-mode {
+  background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('aldibau.jpg');
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+
+/* KETIKA DARK MODE AKTIF, BACKGROUND BERUBAH LEBIH GELAP */
+body.dark-mode {
+  background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('toko.jpg');
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+
+/* MENU NAVIGASI ATAS */
+.navbar {
+  background-color: #333;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 22px;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar .menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar .menu a:hover {
+  color: #007bff;
+}
+
+/* WADAH PILIHAN TEMA TERANG & GELAP */
+.pilihan-tema {
+  display: flex;
+  gap: 4px;
+  background-color: #222;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid #555;
+}
+
+.btn-tema {
+  background-color: transparent;
+  color: #ccc;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.btn-tema:hover {
+  color: white;
+}
+
+.btn-tema.aktif {
+  background-color: #007bff;
+  color: white;
+}
+
+/* WADAH UTAMA */
+.container {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* KOTAK PROFIL & KATALOG */
+.kotak-profil, .item-katalog {
+  background-color: white;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.kotak-profil img, .item-katalog img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.judul-katalog {
+  text-align: center;
+  color: #333;
+  margin: 20px 0;
+}
+
+.item-katalog h3 {
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.harga {
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode .navbar {
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-mode .kotak-profil,
+body.dark-mode .item-katalog {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+body.dark-mode .judul-katalog,
+body.dark-mode .item-katalog h3 {
+  color: #ffffff;
+}
+
